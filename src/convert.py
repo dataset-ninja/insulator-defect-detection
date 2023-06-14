@@ -23,8 +23,8 @@ from supervisely.io.fs import (
 
 
 # project_name = "Insulator-Defect Detection"
-dataset_path = "/home/alex/DATASETS/TODO/Insulator-Defect Detection/VOC/images"
-anns_path = "/home/alex/DATASETS/TODO/Insulator-Defect Detection/VOC/labels"
+dataset_path = "./APP_DATA/VOC/images"
+anns_path = "./APP_DATA/VOC/labels"
 batch_size = 30
 images_ext = ".jpg"
 ann_ext = ".txt"
