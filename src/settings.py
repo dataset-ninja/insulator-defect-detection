@@ -1,6 +1,14 @@
 from typing import Dict, List, Optional, Union
 
-from dataset_tools.templates import AnnotationType, CVTask, Industry, License
+from dataset_tools.templates import (
+    AnnotationType,
+    Category,
+    CVTask,
+    Domain,
+    Industry,
+    License,
+    Research,
+)
 
 ##################################
 # * Before uploading to instance #
@@ -12,11 +20,16 @@ PROJECT_NAME_FULL: str = "Insulator-Defect Detection"
 # * After uploading to instance ##
 ##################################
 LICENSE: License = License.CC_BY_4_0()
-INDUSTRIES: List[Industry] = Industry.Energy()
+APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Energy()]
+CATEGORY: Category = Category.EnergyAndUtilities()
+
 CV_TASKS: List[CVTask] = [CVTask.ObjectDetection()]
 ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.ObjectDetection()]
 
-RELEASE_YEAR: int = 2022
+RELEASE_DATE: Optional[str] = "2022-09-14"  # e.g. "YYYY-MM-DD"
+if RELEASE_DATE is None:
+    RELEASE_YEAR: int = None
+
 HOMEPAGE_URL: str = "https://figshare.com/articles/dataset/VOC_zip/21200986"
 # e.g. "https://some.com/dataset/homepage"
 
@@ -39,6 +52,14 @@ CLASS2COLOR: Optional[Dict[str, List[str]]] = None
 
 PAPER: Optional[str] = "https://www.mdpi.com/1424-8220/22/22/8801"
 CITATION_URL: Optional[str] = "https://www.mdpi.com/1424-8220/22/22/8801"
+AUTHORS: Optional[List[str]] = [
+    "Zheng, Jianfeng",
+    "Wu, Hang",
+    "Zhang, Han",
+    "Wang, Zhaoqi",
+    "Xu, Weiyue",
+]
+
 ORGANIZATION_NAME: Optional[Union[str, List[str]]] = [
     "Changzhou University",
     "Chinese Academy of Sciences",
@@ -47,6 +68,8 @@ ORGANIZATION_URL: Optional[Union[str, List[str]]] = [
     "http://eng.cczu.edu.cn/main.htm",
     "https://english.cas.cn/",
 ]
+
+SLYTAGSPLIT: Optional[Dict[str, List[str]]] = None
 TAGS: List[str] = None
 
 ##################################
@@ -61,10 +84,15 @@ def check_names():
 
 
 def get_settings():
+    if RELEASE_DATE is not None:
+        global RELEASE_YEAR
+        RELEASE_YEAR = int(RELEASE_DATE.split("-")[0])
+
     settings = {
         "project_name": PROJECT_NAME,
         "license": LICENSE,
-        "industries": INDUSTRIES,
+        "applications": APPLICATIONS,
+        "category": CATEGORY,
         "cv_tasks": CV_TASKS,
         "annotation_types": ANNOTATION_TYPES,
         "release_year": RELEASE_YEAR,
@@ -76,13 +104,16 @@ def get_settings():
     if any([field is None for field in settings.values()]):
         raise ValueError("Please fill all fields in settings.py after uploading to instance.")
 
+    settings["release_date"] = RELEASE_DATE
     settings["project_name_full"] = PROJECT_NAME_FULL or PROJECT_NAME
     settings["download_original_url"] = DOWNLOAD_ORIGINAL_URL
     settings["class2color"] = CLASS2COLOR
     settings["paper"] = PAPER
     settings["citation_url"] = CITATION_URL
+    settings["authors"] = AUTHORS
     settings["organization_name"] = ORGANIZATION_NAME
     settings["organization_url"] = ORGANIZATION_URL
-    settings["tags"] = TAGS if TAGS is not None else []
+    settings["slytagsplit"] = SLYTAGSPLIT
+    settings["tags"] = TAGS
 
     return settings
