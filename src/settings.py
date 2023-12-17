@@ -22,7 +22,7 @@ HIDE_DATASET = False  # set False when 100% sure about repo quality
 ##################################
 LICENSE: License = License.CC_BY_4_0()
 APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Energy()]
-CATEGORY: Category = Category.EnergyAndUtilities()
+CATEGORY: Category = Category.EnergyAndUtilities(extra=Category.Tutorial())
 
 CV_TASKS: List[CVTask] = [CVTask.ObjectDetection()]
 ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.ObjectDetection()]
