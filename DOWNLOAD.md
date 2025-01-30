@@ -1,6 +1,6 @@
 Dataset **Insulator-Defect Detection** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
- [Download](https://www.dropbox.com/scl/fi/utk7krxtv206s5lxxsbzk/insulator-defect-detection-DatasetNinja.tar?rlkey=xksjkk7ri8sgl1hz8f2ytl2sb&dl=1)
+ [Download](https://assets.supervisely.com/remote/eyJsaW5rIjogImZzOi8vYXNzZXRzLzEwMjdfSW5zdWxhdG9yLURlZmVjdCBEZXRlY3Rpb24vaW5zdWxhdG9yLWRlZmVjdC1kZXRlY3Rpb24tRGF0YXNldE5pbmphLnRhciIsICJzaWciOiAiV0dMNHh5VFZ0Y1h6UHRYaVlxK2dQRWFSVFBHV1Y2dURlRUtGTGJRUTZlcz0ifQ==)
 
 As an alternative, it can be downloaded with *dataset-tools* package:
 ``` bash
